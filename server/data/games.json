@@ -1,0 +1,129 @@
+{
+  "1a2b3c4d-1111-2222-3333-444455556666": {
+    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+    "title": "PUBG",
+    "genres": ["Action", "Shooter", "Multi-player"],
+    "isVerified": true,
+    "players": 32000,
+    "date": "2017-12-20",
+    "imageUrl": "assets/images/pubg.jpg",
+    "summary": "A battle royale game.",
+    "description": "100 players parachute onto an island and scavenge for weapons to survive.",
+    "likes": 124,
+    "comments": ["Very nice game", "I don't like this game"],
+    "reviews": ["Fun with friends but toxic"],
+    "_createdOn": 1617194350000
+  },
+
+  "2b3c4d5e-aaaa-bbbb-cccc-ddddeeeeffff": {
+    "_ownerId": "ba826519-9531-4c65-a2a5-bc0304b37adc",
+    "title": "The Witcher 3",
+    "genres": ["Action", "Adventure", "RPG"],
+    "isVerified": true,
+    "players": 29000,
+    "date": "2015-05-19",
+    "imageUrl": "assets/images/witcher.jpg",
+    "summary": "A story-driven open-world RPG set in a dark fantasy universe.",
+    "description": "Play as Geralt of Rivia on a mission to find the Child of Prophecy.",
+    "likes": 310,
+    "comments": ["Masterpiece", "10/10 story"],
+    "reviews": ["Best RPG ever created."],
+    "_createdOn": 1618101200000
+  },
+
+  "3c4d5e6f-ab12-cd34-ef56-1234567890ab": {
+    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+    "title": "GTA V",
+    "genres": ["Action", "Adventure", "Shooter"],
+    "isVerified": "true",
+    "players": 50000,
+    "date": "2013-09-17",
+    "imageUrl": "assets/images/gta.jpg",
+    "summary": "A criminal underworld sandbox with 3 protagonists.",
+    "description": "Heists, chaos, missions and roleplay in a modern open-world city.",
+    "likes": 420,
+    "comments": ["Never gets old", "Online mode is crazy"],
+    "reviews": ["One of the most successful games ever."],
+    "_createdOn": 1616000000000
+  },
+
+  "4d5e6f7a-bb22-cc33-dd44-ee5500ff1100": {
+    "_ownerId": "ba826519-9531-4c65-a2a5-bc0304b37adc",
+    "title": "Valorant",
+    "genres": ["Shooter", "Competitive", "Multi-player"],
+    "isVerified": false,
+    "players": 47000,
+    "date": "2020-06-02",
+    "imageUrl": "assets/images/valorant.jpg",
+    "summary": "Competitive tactical shooter with unique agents.",
+    "description": "High-precision gunplay meets character abilities.",
+    "likes": 265,
+    "comments": ["Best FPS rn", "Tilt but addicting"],
+    "reviews": ["The ranked grind never ends."],
+    "_createdOn": 1661000200000
+  },
+
+  "5e6f7a8b-cc44-dd55-ee66-ff7700aa2200": {
+    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+    "title": "Minecraft",
+    "genres": ["Sandbox", "Adventure", "Survival"],
+    "isVerified": true,
+    "players": 76000,
+    "date": "2011-11-18",
+    "imageUrl": "assets/images/minecraft.jpg",
+    "summary": "Build, explore, and survive in a limitless block world.",
+    "description": "Mining, crafting, creativity and danger come together.",
+    "likes": 510,
+    "comments": ["Childhood game", "Flawless replay value"],
+    "reviews": ["The best sandbox ever created."],
+    "_createdOn": 1613000000000
+  },
+
+  "6f7a8b9c-dd66-ee77-ff88-aa9900bb3300": {
+    "_ownerId": "ba826519-9531-4c65-a2a5-bc0304b37adc",
+    "title": "Elden Ring",
+    "genres": ["RPG", "Action", "Fantasy"],
+    "isVerified": false,
+    "players": 41000,
+    "date": "2022-02-25",
+    "imageUrl": "assets/images/eldenring.jpg",
+    "summary": "An open-world Souls-borne experience.",
+    "description": "Brutal bosses, deep lore and vast exploration in the Lands Between.",
+    "likes": 380,
+    "comments": ["Pain and pleasure", "GOAT"],
+    "reviews": ["A masterpiece of difficulty and world design."],
+    "_createdOn": 1677000200000
+  },
+
+  "7g8h9i0j-ee88-ff99-aa00-bb1100cc4400": {
+    "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+    "title": "Fortnite",
+    "genres": ["Shooter", "Battle Royale", "Casual"],
+    "isVerified": false,
+    "players": 69000,
+    "date": "2017-07-21",
+    "imageUrl": "assets/images/fortnite.jpg",
+    "summary": "Cartoon-style battle royale with building mechanics.",
+    "description": "Fast-paced combat mixed with creative construction.",
+    "likes": 295,
+    "comments": ["Sweaty kids everywhere", "Still fun tho"],
+    "reviews": ["Built different — literally."],
+    "_createdOn": 1654000200000
+  },
+
+  "8h9i0j1k-ff99-aa11-bb22-cc3300dd5500": {
+    "_ownerId": "ba826519-9531-4c65-a2a5-bc0304b37adc",
+    "title": "Cyberpunk 2077",
+    "genres": ["RPG", "Action", "Sci-Fi"],
+    "isVerified": false,
+    "players": 27000,
+    "date": "2020-12-10",
+    "imageUrl": "assets/images/cyberpunk.jpg",
+    "summary": "First-person RPG set in a dystopian futuristic mega-city.",
+    "description": "Live as V — mercenary outlaw chasing a prototype implant that grants immortality.",
+    "likes": 260,
+    "comments": ["1.0 was bad, now it's amazing", "Night City is alive"],
+    "reviews": ["From mid to masterpiece after patches."],
+    "_createdOn": 1668000200000
+  }
+}
