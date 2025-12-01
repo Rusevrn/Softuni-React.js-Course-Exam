@@ -1,8 +1,24 @@
 import { Link } from "react-router"
 import CatalogItem from "./CatalogItem"
+import useFetch from "../../hooks/useFetch"
+import { useEffect, useState } from "react";
 
 function Catalog() {
-    
+    const {games, isLoading} = useFetch();
+    const [activeButton, setActiveButton] = useState('Show All');
+    const genres = ['Show All', 'Adventure', 'Action', 'Shooter'];
+    const [viewedGames, setViewedGames] = useState(games);
+
+    useEffect(() => {
+        if (activeButton === 'Show All') {
+            setViewedGames(games);
+        } else {
+            setViewedGames(
+                games.filter(game => game.genres.includes(activeButton))
+            );
+        };
+    }, [activeButton, isLoading])
+
     return (
         <>
             <div className="page-heading header-text">
@@ -19,25 +35,18 @@ function Catalog() {
             <div className="section trending">
                 <div className="container">
                     <ul className="trending-filter">
-                        <li>
-                            <a className="is_active" href="#!" data-filter="*">Show All</a>
-                        </li>
-                        <li>
-                            <a href="#!" data-filter=".adv">Adventure</a>
-                        </li>
-                        <li>
-                            <a href="#!" data-filter=".act">Action</a>
-                        </li>
-                        <li>
-                            <a href="#!" data-filter=".sht">Shooter</a>
-                        </li>
+                        {genres.map(genre => (
+                            <li key={genre}>
+                                <button className={activeButton === genre ? "is_active" : undefined}
+                                    onClick={() => setActiveButton(genre)}>{genre}</button>
+                            </li>
+                        ))}
                     </ul>
+
                     <div className="row trending-box">
-                        {/*.map this
-                        {games.map(game => (
+                        {viewedGames.map(game => (
                             <CatalogItem key={game._id} {...game} />
                         ))}
-                        */}
                     </div>
                 </div>
             </div>

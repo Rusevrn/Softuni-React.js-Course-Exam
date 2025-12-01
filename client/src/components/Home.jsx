@@ -1,8 +1,29 @@
 import { Link } from "react-router"
 import CatalogItem from "./catalog/CatalogItem"
+import useFetch from "../hooks/useFetch"
+import { useEffect, useState } from "react";
 
 
 function Home() {
+    const {games , isLoading} = useFetch();
+    const [trendingGames, setTrendingGames] = useState([]);
+    const [mostPlayedGames, setMostPlayedGames] = useState([]);
+
+    function trending(game) {
+        return game.likes + (Date.now() - game._createdOn) / 100000000;
+    }
+
+    useEffect(() => {
+        setTrendingGames(
+            games.sort((a, b) => trending(b) - trending(a)
+            ).slice(0, 4)
+        )
+        setMostPlayedGames(
+            games.sort((a, b) => b.players - a.players
+            ).slice(0, 6)
+        )
+    }, [isLoading])
+
     return (
         <>
             <div className="main-banner">
@@ -41,9 +62,9 @@ function Home() {
                                 <Link to={'/catalog'}>View All</Link>
                             </div>
                         </div>
-                        {/*.map four trending games
-                        <CatalogItem />
-                        */}
+                        {trendingGames.map(game =>
+                            <CatalogItem key={game._id} {...game} />
+                        )}
                     </div>
                 </div>
             </div>
@@ -62,9 +83,9 @@ function Home() {
                                 <Link to={'/catalog'}>View All</Link>
                             </div>
                         </div>
-                        {/*.map four most played
-                        <CatalogItem variant />
-                        */}
+                        {mostPlayedGames.map(game =>
+                            <CatalogItem key={game._id} {...game} variant />
+                        )}
                     </div>
                 </div>
             </div>
