@@ -13,7 +13,7 @@ function DetailsComments({ comments, reviews }) {
                                         <li className="nav-item" role="presentation">
                                             <button className="nav-link active" id="description-tab" data-bs-toggle="tab"
                                                 data-bs-target="#description" type="button" role="tab"
-                                                aria-controls="description" aria-selected="true">Description</button>
+                                                aria-controls="description" aria-selected="true">Comments </button>
                                         </li>
                                         <li className="nav-item" role="presentation">
                                             <button className="nav-link" id="reviews-tab" data-bs-toggle="tab"
@@ -24,10 +24,14 @@ function DetailsComments({ comments, reviews }) {
                                 </div>
                                 <div className="tab-content" id="myTabContent">
                                     <div className="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-                                        <p>{comments}</p>
+                                        {comments?.map(comment => (
+                                            <p key={comment}>{comment}</p>
+                                        ))}
                                     </div>
                                     <div className="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                                        <p>{reviews}</p>
+                                        {reviews?.map(review => (
+                                            <p key={review}>{review}</p>
+                                        ))}
                                     </div>
                                 </div>
                             </div>

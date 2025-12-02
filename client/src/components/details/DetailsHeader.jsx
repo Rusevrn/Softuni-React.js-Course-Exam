@@ -7,7 +7,7 @@ function DetailsHeader({title}) {
                 <div className="row">
                     <div className="col-lg-12">
                         <h3>{title}</h3>
-                        <span className="breadcrumb"><Link to={'/'}>Home</Link>  {">"}  <Link to={'/'}>Catalog</Link>  {">"}  {title}</span>
+                        <span className="breadcrumb"><Link to={'/'}>Home</Link>  {">"}  <Link to={'/catalog'}>Catalog</Link>  {">"}  {title}</span>
                     </div>
                 </div>
             </div>

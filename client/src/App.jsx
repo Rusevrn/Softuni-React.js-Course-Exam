@@ -5,6 +5,8 @@ import Home from "./components/Home"
 import Details from "./components/details/Details"
 import Catalog from "./components/catalog/Catalog"
 import Contact from "./components/Contact"
+import AuthForm from "./components/AuthForm"
+import GameEditForm from "./components/GameEditForm"
 
 
 function App() {
@@ -14,9 +16,11 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/details' element={<Details />} />
+        <Route path='/details/:_id' element={<Details />} />
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/contact-us' element={<Contact />} />
+        <Route path='/login' element={<AuthForm />} />
+        <Route path='/edit' element={<GameEditForm />} />
       </Routes>
       <Footer />
     </>

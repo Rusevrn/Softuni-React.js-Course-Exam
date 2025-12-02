@@ -1202,6 +1202,30 @@ Page Header Style
   position: relative;
   margin-bottom: 20px;
 }
+.auth-page {
+  background: linear-gradient(180deg, #75acff 0%, #ffffff 100%);
+  backdrop-filter: blur(2px);
+}
+.auth-page .card {
+  border-radius: 25px;
+ 
+}
+.auth-page form .btn {
+  background-color: #e96666;
+  border: none;
+  border-radius: 25px;
+}
+.edit-page {
+  padding-top: 100px;
+  background: linear-gradient(180deg, #75acff 0%, #ffffff 100%);
+  backdrop-filter: blur(2px);
+}
+.edit-page button {
+  background-color: #e96666;
+  border: none;
+  border-radius: 25px;
+}
+
 
 
 /* 
