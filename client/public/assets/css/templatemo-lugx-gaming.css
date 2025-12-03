@@ -1456,6 +1456,29 @@ Single Page Style
   border-radius: 25px;
   transition: all .3s;
 }
+.single-product button {
+  display: inline-block;
+  margin: 10px;
+  margin-top: 50px;
+  height: 50px;
+  line-height: 50px;
+  background-color: #ee626b;
+  color: #fff;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0px 25px;
+  border: none;
+  border-radius: 25px;
+  transition: all .3s;
+}
+
+.single-product .edit:hover {
+background-color: #0071f8;
+}
+.single-product .delete:hover {
+background-color: #f80000;
+}
 
 .single-product form button i {
   margin-right: 5px;

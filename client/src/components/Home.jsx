@@ -1,11 +1,11 @@
 import { Link } from "react-router"
 import CatalogItem from "./catalog/CatalogItem"
-import useFetch from "../hooks/useFetch"
+import useFetchGames from "../hooks/useFetchGames"
 import { useEffect, useState } from "react";
 
 
 function Home() {
-    const {games , isLoading} = useFetch();
+    const {games , isLoading} = useFetchGames();
     const [trendingGames, setTrendingGames] = useState([]);
     const [mostPlayedGames, setMostPlayedGames] = useState([]);
 

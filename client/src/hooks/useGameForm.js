@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export function useGameForm(_id) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: "",
         summary: "",
@@ -83,10 +85,17 @@ export function useGameForm(_id) {
             });
 
             if (!res.ok) throw new Error("Request failed.");
-            return await res.json();
+            const data = await res.json(); 
+
+            if (_id) {
+                navigate(`/details/${_id}`);
+            } else {
+                navigate(`/details/${data._id}`);
+            }
         } catch (err) {
             console.error(err);
         }
+
     };
 
     return {

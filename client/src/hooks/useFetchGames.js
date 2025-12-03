@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useFetch() {
+export default function useFetchGames() {
     const [games, setGames] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {

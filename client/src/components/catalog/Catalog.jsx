@@ -1,10 +1,11 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import CatalogItem from "./CatalogItem"
-import useFetch from "../../hooks/useFetch"
+import useFetchGames from "../../hooks/useFetchGames"
 import { useEffect, useState } from "react";
 
 function Catalog() {
-    const {games, isLoading} = useFetch();
+    const {games, isLoading} = useFetchGames();
+    const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState('Show All');
     const genres = ['Show All', 'Adventure', 'Action', 'Shooter'];
     const [viewedGames, setViewedGames] = useState(games);
@@ -41,6 +42,9 @@ function Catalog() {
                                     onClick={() => setActiveButton(genre)}>{genre}</button>
                             </li>
                         ))}
+                        <li>
+                            <button onClick={() => navigate('/create')}>add a game!</button>
+                        </li>
                     </ul>
 
                     <div className="row trending-box">

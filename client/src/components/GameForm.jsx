@@ -1,10 +1,12 @@
+import { useLocation } from "react-router";
 
 function GameForm({ formData, changeHandler, submitHandler }) {
+    const location = useLocation();
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 edit-page">
             <div className="card shadow p-4">
-                <h3 className="mb-4 text-center">Edit Game</h3>
+                <h3 className="mb-4 text-center">{location.pathname === '/create' ? 'Add Game' : 'Edit Game'}</h3>
 
                 <form onSubmit={submitHandler}>
                     <div className="row">
