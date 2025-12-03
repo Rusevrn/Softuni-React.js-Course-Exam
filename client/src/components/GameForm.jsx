@@ -1,29 +1,5 @@
-import { useState } from "react";
 
-function GameEditForm({ game, onSubmit }) {
-    const [formData, setFormData] = useState({
-        title: game?.title || "",
-        summary: game?.summary || "",
-        description: game?.description || "",
-        genres: game?.genres?.join(", ") || "",
-        players: game?.players || "",
-        date: game?.date || "",
-        imageUrl: game?.imageUrl || ""
-    });
-
-    const changeHandler = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const submitHandler = (e) => {
-        e.preventDefault();
-        onSubmit({
-            ...formData,
-            genres: formData.genres.split(",").map(g => g.trim())
-            //post method here, add useParams and pass id from <Link> in details, <Link>edit</Link> button visible only to the "owner" of the game.
-        });
-    };
+function GameForm({ formData, changeHandler, submitHandler }) {
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 edit-page">
@@ -33,18 +9,19 @@ function GameEditForm({ game, onSubmit }) {
                 <form onSubmit={submitHandler}>
                     <div className="row">
                         <div className="col-lg-4 d-flex flex-column align-items-center">
-                            <img
-                                /*src={formData?.imageUrl}*/
-                                src="/assets/images/cyberpunk.jpg"
-                                alt={formData.title}
-                                className="img-fluid rounded mb-3 shadow-sm"
-                                style={{ maxWidth: "320px", borderRadius: "8px", objectFit: "contain" }}
-                            />
+                            {formData.imageUrl &&
+                                <img
+                                    src={"/" + formData.imageUrl}
+                                    alt={formData.title}
+                                    className="img-fluid rounded mb-3 shadow-sm"
+                                    style={{ maxWidth: "320px", borderRadius: "8px", objectFit: "contain" }}
+                                />
+                            }
                             <input
                                 type="text"
                                 name="imageUrl"
                                 className="form-control"
-                                placeholder="Image URL"
+                                placeholder={formData.imageUrl}
                                 value={formData.imageUrl}
                                 onChange={changeHandler}
                             />
@@ -58,6 +35,7 @@ function GameEditForm({ game, onSubmit }) {
                                         type="text"
                                         name="title"
                                         className="form-control"
+                                        placeholder={formData.title}
                                         value={formData.title}
                                         onChange={changeHandler}
                                     />
@@ -69,6 +47,7 @@ function GameEditForm({ game, onSubmit }) {
                                         type="text"
                                         name="genres"
                                         className="form-control"
+                                        placeholder={formData.genres}
                                         value={formData.genres}
                                         onChange={changeHandler}
                                     />
@@ -80,6 +59,7 @@ function GameEditForm({ game, onSubmit }) {
                                         type="number"
                                         name="players"
                                         className="form-control"
+                                        placeholder={formData.players}
                                         value={formData.players}
                                         onChange={changeHandler}
                                     />
@@ -91,6 +71,7 @@ function GameEditForm({ game, onSubmit }) {
                                         type="date"
                                         name="date"
                                         className="form-control"
+                                        placeholder={formData.date}
                                         value={formData.date}
                                         onChange={changeHandler}
                                     />
@@ -102,6 +83,7 @@ function GameEditForm({ game, onSubmit }) {
                                         name="summary"
                                         className="form-control"
                                         rows={2}
+                                        placeholder={formData.summary}
                                         value={formData.summary}
                                         onChange={changeHandler}
                                     />
@@ -113,7 +95,19 @@ function GameEditForm({ game, onSubmit }) {
                                         name="description"
                                         className="form-control"
                                         rows={4}
+                                        placeholder={formData.description}
                                         value={formData.description}
+                                        onChange={changeHandler}
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Reviews (comma separated)</label>
+                                    <input
+                                        type="text"
+                                        name="reviews"
+                                        className="form-control"
+                                        placeholder={formData.reviews}
+                                        value={formData.reviews}
                                         onChange={changeHandler}
                                     />
                                 </div>
@@ -128,4 +122,4 @@ function GameEditForm({ game, onSubmit }) {
     );
 }
 
-export default GameEditForm
+export default GameForm

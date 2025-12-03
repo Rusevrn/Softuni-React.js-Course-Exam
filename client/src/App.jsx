@@ -6,7 +6,8 @@ import Details from "./components/details/Details"
 import Catalog from "./components/catalog/Catalog"
 import Contact from "./components/Contact"
 import AuthForm from "./components/AuthForm"
-import GameEditForm from "./components/GameEditForm"
+import EditGame from "./components/EditGame"
+import CreateGame from "./components/CreateGame"
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
         <Route path='/catalog' element={<Catalog />} />
         <Route path='/contact-us' element={<Contact />} />
         <Route path='/login' element={<AuthForm />} />
-        <Route path='/edit' element={<GameEditForm />} />
+        <Route path='/details/:_id/edit' element={<EditGame />} />
+        <Route path='/create' element={<CreateGame />} />
       </Routes>
       <Footer />
     </>

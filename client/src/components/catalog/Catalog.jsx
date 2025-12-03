@@ -18,7 +18,7 @@ function Catalog() {
             );
         };
     }, [activeButton, isLoading])
-console.log(games)
+
     return (
         <>
             <div className="page-heading header-text">

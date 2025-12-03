@@ -2,25 +2,13 @@ import { useParams } from "react-router"
 import DetailsComments from "./DetailsComments"
 import DetailsHeader from "./DetailsHeader"
 import DetailsSection from "./DetailsSection"
-import { useEffect, useState } from "react";
+import useFetchGame from "../../hooks/useFetchGame";
 
 
 function Details() {
     const { _id } = useParams();
-    const [game, setGame] = useState([]);
+    const { game } = useFetchGame(_id);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await fetch(`http://localhost:3030/jsonstore/games/${_id}`);
-                const data = await response.json();
-                setGame(data);
-            } catch (err) {
-                console.log(err);
-            }
-        })();
-    }, [_id]);
-    console.log(game)
     return (
         <>
             <DetailsHeader title={game?.title}/>
