@@ -2,12 +2,12 @@ import { useParams } from "react-router"
 import DetailsComments from "./DetailsComments"
 import DetailsHeader from "./DetailsHeader"
 import DetailsSection from "./DetailsSection"
-import useFetchGame from "../../hooks/useFetchGame";
+import useGame from "../../hooks/useGame";
 
 
 function Details() {
     const { _id } = useParams();
-    const { game } = useFetchGame(_id);
+    const { game } = useGame(_id);
 
     return (
         <>

@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router"
 import CatalogItem from "./CatalogItem"
-import useFetchGames from "../../hooks/useFetchGames"
+import useGames from "../../hooks/useGames"
 import { useEffect, useState } from "react";
 
 function Catalog() {
-    const {games, isLoading} = useFetchGames();
+    const {games, isLoading} = useGames();
     const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState('Show All');
     const genres = ['Show All', 'Adventure', 'Action', 'Shooter'];
