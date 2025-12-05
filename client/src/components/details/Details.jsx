@@ -8,6 +8,7 @@ import useGame from "../../hooks/useGame";
 function Details() {
     const { _id } = useParams();
     const { game } = useGame(_id);
+    console.log(game)
 
     return (
         <>

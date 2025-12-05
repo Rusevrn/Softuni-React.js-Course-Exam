@@ -14,7 +14,7 @@ export async function register(data) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data),
     });
-    if (!response.ok) throw new Error('failed to login');
+    if (!response.ok) throw new Error('failed to register');
     return response.json();
 }
 
@@ -23,8 +23,9 @@ export async function logout(token) {
         method: 'GET',
         headers: { 'X-Authorization': token }
     });
-    if(!response.status !== 204 ) throw new Error('failed to logout');
-    return;
+    if (response.status !== 204) {
+        throw new Error('Failed to logout');
+    }
 }
 
 export async function pullUserDetails(token) {

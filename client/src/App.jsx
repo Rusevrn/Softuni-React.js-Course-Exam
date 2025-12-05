@@ -8,12 +8,13 @@ import Contact from "./components/Contact"
 import AuthForm from "./components/AuthForm"
 import EditGame from "./components/EditGame"
 import CreateGame from "./components/CreateGame"
+import { UserProvider } from "./contexts/UserContext"
 
 
 function App() {
 
   return (
-    <>
+    <UserProvider>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -25,7 +26,7 @@ function App() {
         <Route path='/create' element={<CreateGame />} />
       </Routes>
       <Footer />
-    </>
+    </UserProvider>
   )
 }
 

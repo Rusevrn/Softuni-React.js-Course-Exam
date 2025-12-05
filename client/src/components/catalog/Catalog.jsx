@@ -2,13 +2,15 @@ import { Link, useNavigate } from "react-router"
 import CatalogItem from "./CatalogItem"
 import useGames from "../../hooks/useGames"
 import { useEffect, useState } from "react";
+import { useUserContext } from "../../contexts/UserContext";
 
 function Catalog() {
-    const {games, isLoading} = useGames();
+    const { games, isLoading } = useGames();
     const navigate = useNavigate();
     const [activeButton, setActiveButton] = useState('Show All');
     const genres = ['Show All', 'Adventure', 'Action', 'Shooter'];
     const [viewedGames, setViewedGames] = useState(games);
+    const { user } = useUserContext();
 
     useEffect(() => {
         if (activeButton === 'Show All') {
@@ -42,8 +44,9 @@ function Catalog() {
                                     onClick={() => setActiveButton(genre)}>{genre}</button>
                             </li>
                         ))}
-                        <li>
+                        <li>{user &&
                             <button onClick={() => navigate('/create')}>add a game!</button>
+                        }
                         </li>
                     </ul>
 

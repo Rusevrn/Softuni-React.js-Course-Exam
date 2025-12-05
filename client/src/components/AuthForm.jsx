@@ -1,9 +1,24 @@
 import { useState } from "react";
-import useAuth from "../hooks/useAuth";
+import { useUserContext } from "../contexts/UserContext";
 
 function AuthForm() {
     const [isRegister, setIsRegister] = useState(false);
-    const { formData, changeHandler, registerHandler, loginHandler } = useAuth();
+    const [formData, setFormData] = useState({ email: "", password: "", username: "" });
+    const { loginHandler, registerHandler } = useUserContext();
+
+    const changeHandler = (e) => {
+        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const submitLogin = async (e) => {
+        e.preventDefault();
+        await loginHandler({ email: formData.email, password: formData.password });
+    };
+
+    const submitRegister = async (e) => {
+        e.preventDefault();
+        await registerHandler({ email: formData.email, password: formData.password, username: formData.username });
+    };
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 auth-page">
@@ -13,7 +28,7 @@ function AuthForm() {
                 </h3>
 
                 {!isRegister && (
-                    <form onSubmit={e => { e.preventDefault(); }}>
+                    <form onSubmit={submitLogin}>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
                             <input
@@ -38,14 +53,14 @@ function AuthForm() {
                             />
                         </div>
 
-                        <button type="submit" className="btn btn-primary w-100" onClick={loginHandler}>
+                        <button type="submit" className="btn btn-primary w-100">
                             Log In
                         </button>
                     </form>
                 )}
 
                 {isRegister && (
-                    <form>
+                    <form onSubmit={submitRegister}>
                         <div className="mb-3">
                             <label className="form-label">Username</label>
                             <input
@@ -59,15 +74,29 @@ function AuthForm() {
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Email</label>
-                            <input type="email" className="form-control" placeholder="Enter email" />
+                            <input
+                                type="email"
+                                name="email"
+                                className="form-control"
+                                placeholder="Enter email"
+                                value={formData.email}
+                                onChange={changeHandler}
+                            />
                         </div>
 
                         <div className="mb-3">
                             <label className="form-label">Password</label>
-                            <input type="password" className="form-control" placeholder="Enter password" />
+                            <input
+                                type="password"
+                                name="password"
+                                className="form-control"
+                                placeholder="Enter password"
+                                value={formData.password}
+                                onChange={changeHandler}
+                            />
                         </div>
 
-                        <button type="submit" className="btn btn-success w-100" onClick={registerHandler}>
+                        <button type="submit" className="btn btn-success w-100">
                             Register
                         </button>
                     </form>
@@ -76,8 +105,7 @@ function AuthForm() {
                 <hr />
                 <p className="text-center m-0">
                     {isRegister ? "Already have an account?" : "Don't have an account?"}
-                    <button className="btn btn-link p-0 ms-1"
-                        onClick={() => setIsRegister(prev => !prev)}>
+                    <button className="btn btn-link p-0 ms-1" onClick={() => setIsRegister(prev => !prev)}>
                         {isRegister ? "Log in" : "Register"}
                     </button>
                 </p>
@@ -86,4 +114,4 @@ function AuthForm() {
     );
 }
 
-export default AuthForm
+export default AuthForm;

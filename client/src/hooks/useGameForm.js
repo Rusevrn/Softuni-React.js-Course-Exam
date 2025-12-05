@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { fetchGame, createGame, updateGame } from "../services/games";
+import { buildGameMeta } from "../utils/buildGameMeta";
 
-export function useGameForm(_id) {
+export function useGameForm(_id, user) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: "",
@@ -23,8 +25,7 @@ export function useGameForm(_id) {
         (async () => {
             setIsLoading(true);
             try {
-                const res = await fetch(`http://localhost:3030/jsonstore/games/${_id}`);
-                const game = await res.json();
+                const game = await fetchGame(_id);
                 setOriginalGame(game);
 
                 setFormData({
@@ -59,43 +60,18 @@ export function useGameForm(_id) {
             ...formData,
             genres: formData.genres.split(",").map(g => g.trim()),
             reviews: formData.reviews.split(",").map(r => r.trim()),
-            ...(originalGame ? {
-                likes: originalGame.likes,
-                comments: originalGame.comments,
-                isVerified: originalGame.isVerified,
-                _ownerId: originalGame._ownerId,
-                _createdOn: originalGame._createdOn
-            } : {
-                likes: 0,
-                comments: [],
-                isVerified: false,
-                _ownerId: "No owner", // Add owner when profiles are introduced.
-                _createdOn: Date.now()
+            ...buildGameMeta(originalGame, {
+                _ownerId: originalGame?._ownerId ?? user._id,
+                _createdOn: originalGame?._createdOn ?? Date.now()
             })
         };
 
-        const url = _id ? `http://localhost:3030/jsonstore/games/${_id}` : `http://localhost:3030/jsonstore/games`;
-        const method = _id ? "PUT" : "POST";
-
         try {
-            const res = await fetch(url, {
-                method,
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-
-            if (!res.ok) throw new Error("Request failed.");
-            const data = await res.json(); 
-
-            if (_id) {
-                navigate(`/details/${_id}`);
-            } else {
-                navigate(`/details/${data._id}`);
-            }
+            const data = _id ? await updateGame(_id, payload) : await createGame(payload);
+            navigate(`/details/${_id ?? data._id}`);
         } catch (err) {
             console.error(err);
         }
-
     };
 
     return {

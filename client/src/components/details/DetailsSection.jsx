@@ -1,8 +1,22 @@
 import { useNavigate } from "react-router"
+import { useUserContext } from "../../contexts/UserContext";
+import { deleteGame } from "../../services/games";
 
-
-function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, likes, description }) {
+function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, likes, description, _ownerId }) {
     const navigate = useNavigate();
+    const { user } = useUserContext();
+    const isAdmin = user?.email === "admin@abv.bg";
+
+    const handleDelete = async () => {
+        const isConfirmed = window.confirm(`Are you sure you want to delete ${title} ?`);
+        if (!isConfirmed) return;
+        try {
+            await deleteGame(_id);
+            navigate('/catalog');
+        } catch (err) {
+            console.log(err.message);
+        }
+    }
 
     return (
         <div className="single-product section">
@@ -18,16 +32,21 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
                         {isVerified && <i className="fa fa-check-circle"></i>}
                         <p>{summary} {description}</p>
                         <form id="qty" action="#">
-                            <span>{likes} </span>
-                            <button type="submit"><i className="fa fa-thumbs-up"></i>upvote</button>
+                            <span>{likes} upvotes </span>
+                            {user &&
+                                <button type="submit"><i className="fa fa-thumbs-up"></i>upvote</button>
+                            }
                         </form>
                         <ul>
                             <li><span>Game ID:</span>{_id}</li>
                             <li><span>Genre: </span>{genres?.join(' ')}</li>
                         </ul>
-                        {/* conditionally render these buttons, only owner of the game or admin can see them */}
-                        <button className="edit" onClick={() => navigate(`/details/${_id}/edit`)}> <i className="fas fa-edit"></i> Edit</button>
-                        <button className="delete"> <i className="fa-solid fa-trash"></i> Delete</button>
+                        {user && (_ownerId === user._id || isAdmin) && (
+                            <>
+                                <button className="edit" onClick={() => navigate(`/details/${_id}/edit`)}> <i className="fas fa-edit"></i> Edit</button>
+                                <button className="delete" onClick={handleDelete}> <i className="fa-solid fa-trash"></i> Delete</button>
+                            </>
+                        )}
                     </div>
                     <div className="col-lg-12">
                         <div className="sep"></div>

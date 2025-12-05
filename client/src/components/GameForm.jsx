@@ -1,7 +1,5 @@
-import { useLocation } from "react-router";
 
 function GameForm({ formData, changeHandler, submitHandler }) {
-    const location = useLocation();
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 edit-page">
