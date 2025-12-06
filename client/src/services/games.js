@@ -12,14 +12,38 @@ export async function fetchGames() {
     return response.json();
 }
 
+export async function updateGameLikes(_id, likesCount) {
+    const res = await fetch(`http://localhost:3030/jsonstore/games/${_id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ likes: likesCount })
+    });
+    if (!res.ok) throw new Error("Failed to update game likes");
+    return res.json();
+}
+
 export async function createGame(data) {
     const response = await fetch(`http://localhost:3030/jsonstore/games`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    if (!response.ok) throw new Error('failed to create game');
-    return response.json();
+    if (!response.ok) throw new Error('Failed to create game');
+    const createdGame = await response.json();
+    const allRes = await fetch(`http://localhost:3030/jsonstore/interactions`);
+    const allInteractions = await allRes.json();
+    const newInteraction = {
+        _id: createdGame._id,
+        likes: [],
+        comments: []
+    };
+    const merged = { ...allInteractions, [createdGame._id]: newInteraction };
+    await fetch(`http://localhost:3030/jsonstore/interactions`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(merged)
+    });
+    return createdGame;
 }
 
 export async function updateGame(id, data) {
@@ -37,5 +61,9 @@ export async function deleteGame(id) {
         method: 'DELETE'
     });
     if (!response.ok) throw new Error('failed to delete game');
+    const interactionRes = await fetch(`http://localhost:3030/jsonstore/interactions/${id}`, {
+        method: 'DELETE'
+    });
+    if (!interactionRes.ok) console.warn('Failed to delete interaction object');
     return response.json();
 }

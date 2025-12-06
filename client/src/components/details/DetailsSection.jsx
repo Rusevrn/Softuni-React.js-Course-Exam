@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router"
-import { useUserContext } from "../../contexts/UserContext";
 import { deleteGame } from "../../services/games";
+import normalizeImageUrl from "../../utils/normalizeImageUrl";
 
-function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, likes, description, _ownerId }) {
+function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, likes, description, _ownerId, user, userHasLiked, toggleLike }) {
     const navigate = useNavigate();
-    const { user } = useUserContext();
     const isAdmin = user?.email === "admin@abv.bg";
 
     const handleDelete = async () => {
@@ -24,17 +23,22 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="left-image">
-                            <img src={`/${imageUrl}`} alt={title} />
+                            <img src={normalizeImageUrl(imageUrl) || 'loading'} alt={title} />
                         </div>
                     </div>
                     <div className="col-lg-6 align-self-center">
                         <h4>{title}</h4>
                         {isVerified && <i className="fa fa-check-circle"></i>}
                         <p>{summary} {description}</p>
-                        <form id="qty" action="#">
+                        <form id="qty" onSubmit={(e) => {
+                            e.preventDefault();
+                            toggleLike();
+                        }}>
                             <span>{likes} upvotes </span>
                             {user &&
-                                <button type="submit"><i className="fa fa-thumbs-up"></i>upvote</button>
+                                <button type="submit"><i className="fa fa-thumbs-up"></i>
+                                    {userHasLiked ? "downvote" : "upvote"}
+                                </button>
                             }
                         </form>
                         <ul>
@@ -53,7 +57,7 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

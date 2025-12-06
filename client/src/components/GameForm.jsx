@@ -1,3 +1,4 @@
+import normalizeImageUrl from "../utils/normalizeImageUrl";
 
 function GameForm({ formData, changeHandler, submitHandler }) {
 
@@ -11,7 +12,7 @@ function GameForm({ formData, changeHandler, submitHandler }) {
                         <div className="col-lg-4 d-flex flex-column align-items-center">
                             {formData.imageUrl &&
                                 <img
-                                    src={"/" + formData.imageUrl}
+                                    src={normalizeImageUrl(formData.imageUrl) || 'loading'}
                                     alt={formData.title}
                                     className="img-fluid rounded mb-3 shadow-sm"
                                     style={{ maxWidth: "320px", borderRadius: "8px", objectFit: "contain" }}
