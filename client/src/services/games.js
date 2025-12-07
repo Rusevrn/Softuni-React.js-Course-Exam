@@ -67,3 +67,15 @@ export async function deleteGame(id) {
     if (!interactionRes.ok) console.warn('Failed to delete interaction object');
     return response.json();
 }
+
+export async function toggleVerifyGame(id, isVerified) {
+    const res = await fetch(`http://localhost:3030/jsonstore/games/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isVerified: !isVerified })
+    });
+    if (!res.ok) {
+        throw new Error("Failed to toggle verification");
+    }
+    return res.json();
+}

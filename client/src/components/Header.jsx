@@ -29,6 +29,12 @@ function Header() {
                                         className={active === '/contact-us' ? "active" : undefined} onClick={() => setActive('/contact-us')}>Contact Us</Link>
                                 </li>
                                 <li>
+                                    {user &&
+                                        <Link className={active === '/profile' ? "active" : undefined}
+                                            onClick={() => setActive('/profile')} to="/profile">Profile</Link>
+                                    }
+                                </li>
+                                <li>
                                     {user ?
                                         <Link
                                             onClick={() => {

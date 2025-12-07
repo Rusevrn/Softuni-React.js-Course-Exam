@@ -1,10 +1,16 @@
 import { useNavigate } from "react-router"
-import { deleteGame } from "../../services/games";
+import { deleteGame, toggleVerifyGame } from "../../services/games";
 import normalizeImageUrl from "../../utils/normalizeImageUrl";
+import { useState, useEffect } from "react";
 
 function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, likes, description, _ownerId, user, userHasLiked, toggleLike }) {
+    const [verified, setVerified] = useState(false);
     const navigate = useNavigate();
     const isAdmin = user?.email === "admin@abv.bg";
+
+    useEffect(() => {
+        setVerified(isVerified);
+    }, [isVerified]);
 
     const handleDelete = async () => {
         const isConfirmed = window.confirm(`Are you sure you want to delete ${title} ?`);
@@ -14,6 +20,16 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
             navigate('/catalog');
         } catch (err) {
             console.log(err.message);
+        }
+    }
+
+    const handleVerification = async () => {
+        try {
+            await toggleVerifyGame(_id, verified);
+            setVerified(verified => !verified)
+
+        } catch (error) {
+            console.log(error.message)
         }
     }
 
@@ -28,7 +44,12 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
                     </div>
                     <div className="col-lg-6 align-self-center">
                         <h4>{title}</h4>
-                        {isVerified && <i className="fa fa-check-circle"></i>}
+                        {verified && <i className="fa fa-check-circle"></i>}
+                        {isAdmin &&
+                            <button onClick={handleVerification}>{verified ?
+                                "Unverify" : "Verify"}
+                            </button>
+                        }
                         <p>{summary} {description}</p>
                         <form id="qty" onSubmit={(e) => {
                             e.preventDefault();
