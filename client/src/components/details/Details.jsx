@@ -12,8 +12,6 @@ function Details() {
     const { game } = useGame(_id);
     const { user } = useUserContext();
     const { interactions, addComment, toggleLike, likesCount, userHasLiked, deleteCommentHandler } = useInteractions(_id, user)
-    console.log(interactions)
-    //console.log(game)
 
     return (
         <>

@@ -38,8 +38,8 @@ export function useGameForm(_id, user) {
                     imageUrl: game.imageUrl || "",
                     reviews: game.reviews?.join(", ") || ""
                 });
-            } catch (e) {
-                console.error(e);
+            } catch (err) {
+                alert("There was a problem with fetching your game.");
             } finally {
                 setIsLoading(false);
             }
@@ -70,7 +70,7 @@ export function useGameForm(_id, user) {
             const data = _id ? await updateGame(_id, payload) : await createGame(payload);
             navigate(`/details/${_id ?? data._id}`);
         } catch (err) {
-            console.error(err);
+            alert(`There was an issue with ${_id ? 'updating' : 'creating'} your game.`);
         }
     };
 

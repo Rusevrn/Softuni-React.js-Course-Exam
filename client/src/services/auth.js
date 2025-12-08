@@ -24,7 +24,7 @@ export async function logout(token) {
         headers: { 'X-Authorization': token }
     });
     if (response.status !== 204) {
-        throw new Error('Failed to logout');
+        throw new Error('failed to logout.');
     }
 }
 

@@ -33,7 +33,7 @@ export function UserProvider({ children }) {
             const result = await register(formData);
             saveSession(result);
         } catch (err) {
-            console.error(err);
+            alert("There was an issue with registering you.");
         }
     };
 
@@ -43,7 +43,7 @@ export function UserProvider({ children }) {
             saveSession(result);
             navigate(-1);
         } catch (err) {
-            console.error(err);
+            alert("Wrong password/email or server is unreachable");
         }
     };
 
@@ -52,9 +52,10 @@ export function UserProvider({ children }) {
         if (!currentToken) return;
         try {
             await logout(currentToken);
-            clearSession();
         } catch (err) {
-            console.error(err);
+            alert("Session expired or server is unreachable. Logging you out.");
+        }finally{
+            clearSession();
         }
     };
 

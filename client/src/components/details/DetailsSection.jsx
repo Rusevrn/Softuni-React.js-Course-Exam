@@ -19,7 +19,7 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
             await deleteGame(_id);
             navigate('/catalog');
         } catch (err) {
-            console.log(err.message);
+            alert("There was an issue with deleting your game.");
         }
     }
 
@@ -29,7 +29,7 @@ function DetailsSection({ title, genres, _id, isVerified, imageUrl, summary, lik
             setVerified(verified => !verified)
 
         } catch (error) {
-            console.log(error.message)
+            alert("There was an issue with veryfing the game.")
         }
     }
 

@@ -54,7 +54,7 @@ export function useProfile(user) {
                 setLikedGames(likes);
                 setUserComments(comments);
             } catch (err) {
-                console.error("Profile loading failed:", err);
+                alert("Profile loading failed.");
             } finally {
                 setLoading(false);
             }

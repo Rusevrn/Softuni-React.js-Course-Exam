@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useUserContext } from "../contexts/UserContext";
 
+
 function Header() {
-    const [active, setActive] = useState('/');
     const { user, logoutHandler } = useUserContext();
+    const location = useLocation();
 
     return (
         <header className="header-area header-sticky">
@@ -13,39 +13,30 @@ function Header() {
                     <div className="col-12">
                         <nav className="main-nav">
                             <Link to="/" className="logo">
-                                <img src="assets/images/logo.png" alt="" style={{ width: '158px' }} />
+                                <img src="/assets/images/logo.png" alt="" style={{ width: '158px' }} />
                             </Link>
                             <ul className="nav">
                                 <li>
-                                    <Link to="/"
-                                        className={active === '/' ? "active" : undefined} onClick={() => setActive('/')}>Home</Link>
+                                    <Link to="/" className={location.pathname === '/' ? "active" : undefined}>Home</Link>
                                 </li>
                                 <li>
-                                    <Link to="/catalog"
-                                        className={active === '/catalog' ? "active" : undefined} onClick={() => setActive('/catalog')}>Catalog</Link>
+                                    <Link to="/catalog" 
+                                    className={location.pathname === '/catalog' || location.pathname.startsWith('/details')
+                                    ? "active" : undefined}>Catalog</Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact-us"
-                                        className={active === '/contact-us' ? "active" : undefined} onClick={() => setActive('/contact-us')}>Contact Us</Link>
+                                    <Link to="/contact-us" className={location.pathname === '/contact-us' ? "active" : undefined}>Contact Us</Link>
                                 </li>
                                 <li>
                                     {user &&
-                                        <Link className={active === '/profile' ? "active" : undefined}
-                                            onClick={() => setActive('/profile')} to="/profile">Profile</Link>
+                                        <Link className={location.pathname === '/profile' ? "active" : undefined}to="/profile">Profile</Link>
                                     }
                                 </li>
                                 <li>
                                     {user ?
-                                        <Link
-                                            onClick={() => {
-                                                logoutHandler();
-                                                setActive('unset');
-                                            }}>Sign Out</Link>
+                                        <Link onClick={logoutHandler}>Sign Out</Link>
                                         :
-                                        <Link
-                                            to="/login"
-                                            onClick={() => setActive('unset')}
-                                        >Sign In</Link>
+                                        <Link to="/login">Sign In</Link>
                                     }
                                 </li>
                             </ul>

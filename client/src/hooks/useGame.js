@@ -15,7 +15,7 @@ export default function useGame(_id) {
                 const data = await fetchGame(_id);
                 setGame(data);
             } catch (err) {
-                console.error(err);
+                alert("There was an issue with fetching your game.");
             } finally {
                 setIsLoading(false);
             }

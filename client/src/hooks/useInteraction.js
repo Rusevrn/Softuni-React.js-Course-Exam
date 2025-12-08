@@ -21,7 +21,7 @@ export function useInteractions(gameId, user) {
                     likesCount: gameData.likes
                 });
             } catch (err) {
-                console.error(err);
+                alert("There was a problem with loading likes and comments.");
             } finally {
                 setLoading(false);
             }

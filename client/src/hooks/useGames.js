@@ -17,7 +17,7 @@ export default function useGames() {
                 }));
                 setGames(gamesArray);
             } catch (err) {
-                console.error(err);
+                alert("There was a problem with loading the games.");
             } finally {
                 setIsLoading(false);
             }
