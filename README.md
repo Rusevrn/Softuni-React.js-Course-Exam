@@ -1,7 +1,7 @@
 # Game Catalog – SoftUni React 2025
 
 ## Description
-**Game Catalog** is a full-stack web application that allows users to explore existing games, create new ones, edit or delete their own games, and interact socially through likes and comments.  
+**Game Catalog** is a web application that allows users to explore existing games, create new ones, edit or delete their own games, and interact socially through likes and comments.  
 The platform also provides a personal profile page where users can track their activity.
 
 The project was built as part of the **SoftUni React 2025** course.
@@ -128,4 +128,5 @@ project-root/
 │  └─ server.js
 │
 └─ README.md
+
 
