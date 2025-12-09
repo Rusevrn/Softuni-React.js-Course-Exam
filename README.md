@@ -23,10 +23,37 @@ The project was built as part of the **SoftUni React 2025** course.
 
 ## Technologies Used
 - React
+- React Router
+- React Context
+- Custom hooks
 - Bootstrap
 - SoftUni Practice Server
 
 ---
+### Utils
+
+Helper functions to improve readability in hooks.
+
+- **`buildGameMeta.js`** – Generates metadata for games for display purposes.
+- **`normalizeImageUrl.js`** – Ensures game images are loaded correctly, providing a fallback if missing.
+
+### Services
+
+Handles communication with the backend API:
+
+- **`auth.js`** – Manages login, registration, and logout operations.
+- **`games.js`** – Performs CRUD operations for games, including likes/upvotes.
+- **`interactions.js`** – Manages likes and comments for each game.
+
+### Hooks
+
+Custom React hooks that encapsulate logic for reusability and cleaner components:
+
+- **`useGame.js`** – Fetches a single game by ID.
+- **`useGames.js`** – Fetches all games for catalog views.
+- **`useGameForm.js`** – Manages the state and logic for creating/editing games.
+- **`useInteraction.js`** – Handles likes, comments, and related state.
+- **`useProfile.js`** – Aggregates user activity for the profile page.
 
 ## Credits
 
@@ -101,3 +128,4 @@ project-root/
 │  └─ server.js
 │
 └─ README.md
+
