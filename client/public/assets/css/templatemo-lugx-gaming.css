@@ -1243,7 +1243,7 @@ footer {
 
 footer p {
   text-align: center;
-  line-height: 90px;
+  line-height: 70px;
   color: #fff;
   font-size: 16px;
   font-weight: 400;
@@ -1330,6 +1330,7 @@ Page Header Style
   backdrop-filter: blur(2px);
   padding-top: 10%;
   animation: profileFade 0.4s ease-in-out;
+  min-height: calc(100vh - 300px);
 }
 @keyframes profileFade {
     from {
