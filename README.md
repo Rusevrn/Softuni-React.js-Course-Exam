@@ -50,63 +50,54 @@ Should be on http://localhost:5173
 
 ## Project structure 
 ```text
-react-softuni-exam
-|   
-+---client
-|         
-|   +---public
-|   |   |   
-|   |   |   
-|   |   \---assets
-|   |               
-|   \---src
-|       |   App.jsx
-|       |   main.jsx
-|       |   
-|       +---components
-|       |   |   AuthForm.jsx
-|       |   |   Contact.jsx
-|       |   |   CreateGame.jsx
-|       |   |   EditGame.jsx
-|       |   |   Footer.jsx
-|       |   |   GameForm.jsx
-|       |   |   Header.jsx
-|       |   |   Home.jsx
-|       |   |   Profile.jsx
-|       |   |   RouteGuard.jsx
-|       |   |   
-|       |   +---catalog
-|       |   |       Catalog.jsx
-|       |   |       CatalogItem.jsx
-|       |   |       
-|       |   \---details
-|       |           Details.jsx
-|       |           DetailsComments.jsx
-|       |           DetailsHeader.jsx
-|       |           DetailsSection.jsx
-|       |           
-|       +---contexts
-|       |       UserContext.jsx
-|       |       
-|       +---hooks
-|       |       useGame.js
-|       |       useGameForm.js
-|       |       useGames.js
-|       |       useInteraction.js
-|       |       useProfile.js
-|       |       
-|       +---services
-|       |       auth.js
-|       |       games.js
-|       |       interactions.js
-|       |       
-|       \---utils
-|               buildGameMeta.js
-|               normalizeImageUrl.js
-|               
-\---server
-    |   server.js
-    |   
-    \---data
-            games.json
-            interactions.json
+project-root/
+├─ Client/
+│  ├─ public/
+│  │  └─ assets/
+│  │
+│  └─ src/
+│     ├─ components/
+│     │  ├─ AuthForm.jsx
+│     │  ├─ Contact.jsx
+│     │  ├─ CreateGame.jsx
+│     │  ├─ EditGame.jsx
+│     │  ├─ Footer.jsx
+│     │  ├─ GameForm.jsx
+│     │  ├─ Header.jsx
+│     │  ├─ Home.jsx
+│     │  ├─ Profile.jsx
+│     │  ├─ RouteGuard.jsx
+│     │  ├─ catalog/
+│     │  │  ├─ Catalog.jsx
+│     │  │  └─ CatalogItem.jsx
+│     │  └─ details/
+│     │     ├─ Details.jsx
+│     │     ├─ DetailsComments.jsx
+│     │     ├─ DetailsHeader.jsx
+│     │     └─ DetailsSection.jsx
+│     │
+│     ├─ contexts/
+│     │  └─ UserContext.jsx
+│     ├─ hooks/
+│     │  ├─ useGame.js
+│     │  ├─ useGames.js
+│     │  ├─ useGameForm.js
+│     │  ├─ useInteraction.js
+│     │  └─ useProfile.js
+│     ├─ services/
+│     │  ├─ auth.js
+│     │  ├─ games.js
+│     │  └─ interactions.js
+│     ├─ utils/
+│     │  ├─ buildGameMeta.js
+│     │  └─ normalizeImageUrl.js
+│     ├─ App.jsx
+│     └─ main.jsx
+│
+├─ Server/
+│  ├─ data/
+│  │  ├─ games.json
+│  │  └─ interactions.json
+│  └─ server.js
+│
+└─ README.md
